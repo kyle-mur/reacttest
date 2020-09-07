@@ -33,7 +33,8 @@ console.log(this.props)
             let id= this.props.location.search.length ? this.props.location.search : null;
             if (id) { // using history
               id = id.split('=');
-              id = [id.length-1]; // get query param
+              id = id[id.length-1]; // get query param
+
               fetchApi(breweryApi +id)
               .then((data) => {
                 this.setState({
@@ -57,10 +58,13 @@ console.log(this.props)
         brewery = this.state.data.breweries? this.state.data.breweries[0] : {};
       }
 
-      const breweryPath = "/brewery?id=" + brewery.id;
 
       return (
-      <div><Link to="/brewery?id=asdsa"></Link></div>
+        <div class="row">
+        <div class="col-md-4>">{brewery.name}</div>
+
+        <div class="col-md-4>">{brewery.description}</div>
+        </div>
 
     )
   }
@@ -82,7 +86,7 @@ class Beer extends React.Component {
       let id= this.props.location.search.length ? this.props.location.search : null;
       if (id) { // using history
         id = id.split('=');
-        id = [id.length-1]; // get query param
+        id = id[id.length-1]; // get query param
         fetchApi(api + id)
         .then((data) => {
           this.setState({
