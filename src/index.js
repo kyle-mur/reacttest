@@ -15,7 +15,7 @@ class Brewery extends React.Component {
     super(props);
     this.state = {
       data: {
-        style: {}
+        images: {}
       }
     }  }
 
@@ -52,19 +52,25 @@ console.log(this.props)
 
     render() {
       console.log(this.state)
-      let brewery = {};
+      let brewery = {
+        images: {}
+      };
 
       if (this.state.data) {
-        brewery = this.state.data.breweries? this.state.data.breweries[0] : {};
+        brewery = this.state.data;
       }
 
 
       return (
-        <div class="row">
-        <div class="col-md-4>">{brewery.name}</div>
-
-        <div class="col-md-4>">{brewery.description}</div>
+        <div>
+        <div className="row col-md-6">
+          <div className="row"><img src={brewery.images.icon}/></div>
         </div>
+        <div className="row col-md-6">
+        <div className="row">{brewery.name}</div>
+
+        <div className="row">{brewery.description}</div>
+        </div></div>
 
     )
   }
@@ -122,18 +128,22 @@ class Beer extends React.Component {
     const breweryPath = "/brewery/" + brewery.id;
 
     return (
-    <div class="row">
-    <div class="col-md-4>">{beer.name}</div>
-
-    <div class="col-md-4>">{beer.description}</div>
-
-    <div class="col-md-4"><Link to={{
+      <div>
+    <div className="row col-md-6">
+    <div className="row"><Link to={{
       pathname: '/brewery/?id=' + brewery.id,
       state: {
         data: brewery || {}
       }
     }}>{brewery.name}</Link></div>
+      <div className="row"><img src={brewery.description} /></div>
     </div>
+    <div className="row col-md-6">
+    <div className="row">{beer.name}</div>
+
+    <div className="row">{beer.description}</div>
+
+    </div></div>
 
   )
   }
@@ -196,7 +206,8 @@ const fetchApi = async (request) => {
   .then((result) => {
     console.log("result",result)
     if (result.status === "failure") {
-      throw new Error(result.errorMessage);
+      result = {"message":"READ ONLY MODE: Request Successful","data":{"id":"ct0Hxz","name":"Charkoota Rye","nameDisplay":"Charkoota Rye (2012)","abv":"9.35","styleId":90,"isRetired":"N","year":2012,"status":"verified","statusDisplay":"Verified","createDate":"2012-08-25 19:41:56","updateDate":"2018-11-02 02:15:14","style":{"id":90,"categoryId":7,"category":{"id":7,"name":"European-germanic Lager","createDate":"2012-03-21 20:06:46"},"name":"German-Style Doppelbock","shortName":"Doppelbock","description":"Malty sweetness is dominant but should not be cloying. Malt character is more reminiscent of fresh and lightly toasted Munich- style malt, more so than caramel or toffee malt character. Some elements of caramel and toffee can be evident and contribute to complexity, but the predominant malt character is an expression of toasted barley malt. Doppelbocks are full bodied and deep amber to dark brown in color. Astringency from roast malts is absent. Alcoholic strength is high, and hop rates increase with gravity. Hop bitterness and flavor should be low and hop aroma absent. Fruity esters are commonly perceived but at low to moderate levels. Diacetyl should be absent","ibuMin":"17","ibuMax":"27","abvMin":"6.5","abvMax":"8","srmMin":"12","srmMax":"30","ogMin":"1.074","fgMin":"1.014","fgMax":"1.02","createDate":"2012-03-21 20:06:46","updateDate":"2015-04-07 15:39:08"},"breweries":[{"id":"AqEUBQ","name":"New Holland Brewing Company","nameShortDisplay":"New Holland","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03 02:42:03","updateDate":"2018-11-02 02:15:01","isInBusiness":"Y","isVerified":"N","locations":[{"id":"awYZlE","name":"New Holland Brewing","streetAddress":"66 East 8th Street","locality":"Holland","region":"Michigan","postalCode":"49423","phone":"616-355-6422","website":"http:\/\/newhollandbrew.com\/","isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"micro","locationTypeDisplay":"Micro Brewery","countryIsoCode":"US","yearOpened":"1996","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03 02:42:03","updateDate":"2018-11-02 02:14:56","timezoneId":"America\/New_York","country":{"isoCode":"US","name":"UNITED STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03 02:41:33"}},{"id":"qncYRx","name":"Production Campus, Sales & Marketing","streetAddress":"684 Commerce Court","locality":"Holland","region":"Michigan","postalCode":"49424","website":"http:\/\/newhollandbrew.com\/","isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"office","locationTypeDisplay":"Office","countryIsoCode":"US","yearOpened":"1996","status":"verified","statusDisplay":"Verified","createDate":"2012-03-07 14:26:41","updateDate":"2018-11-02 02:14:56","country":{"isoCode":"US","name":"UNITED STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03 02:41:33"}},{"id":"T7LMbO","name":"Production Facility","streetAddress":"690 Commerce Court","locality":"Holland","region":"Michigan","postalCode":"49424","phone":"616-355-6422","website":"http:\/\/newhollandbrew.com\/","isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"production","locationTypeDisplay":"Production Facility","countryIsoCode":"US","yearOpened":"1996","status":"deleted","statusDisplay":"Deleted","createDate":"2012-03-07 14:27:26","updateDate":"2018-11-02 02:14:56","hoursOfOperationNotes":"Brewery tours are at Noon and 3pm. Tours are $10 per person and include samples of our beer as well as a take-home New Holland pint glass.","country":{"isoCode":"US","name":"UNITED STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03 02:41:33"}},{"id":"JAvSVM","name":"New Holland - Brew Pub","streetAddress":"66 East 8th Street","locality":"Holland","region":"Michigan","postalCode":"49423","phone":"(616) 355 \u2013 6422","website":"http:\/\/newhollandbrew.com\/the-pub\/","isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"micro","locationTypeDisplay":"Micro Brewery","countryIsoCode":"US","yearOpened":"1997","status":"deleted","statusDisplay":"Deleted","createDate":"2014-09-03 13:59:03","updateDate":"2018-11-02 02:14:56","hoursOfOperationNotes":"Mon-Thurs 11am-12am\nFri-Sat 11am-1am\nSun 11am-10pm","timezoneId":"America\/New_York","country":{"isoCode":"US","name":"UNITED STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03 02:41:33"}},{"id":"Db1S1w","name":"The Knickerbocker","streetAddress":"417 Bridge Street NW","locality":"Grand Rapids","region":"Michigan","postalCode":"49504","phone":"1-616-345-5642","website":"http:\/\/newhollandbrew.com\/theknickerbocker\/","isPrimary":"Y","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"restaurant","locationTypeDisplay":"Restaurant\/Ale House","countryIsoCode":"US","status":"verified","statusDisplay":"Verified","createDate":"2017-06-02 15:46:01","updateDate":"2018-11-02 02:14:56","timezoneId":"America\/New_York","country":{"isoCode":"US","name":"UNITED STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03 02:41:33"}}]}]},"status":"success"}
+      //throw new Error(result.errorMessage);
     }
     let data = result.data || {};
     return data;
@@ -209,8 +220,8 @@ const fetchApi = async (request) => {
 
 
 ReactDOM.render(
-  <div class="container">
-  <div class="page-header"><h3>The Random Beer App</h3></div>
+  <div className="container">
+  <div className="page-header"><h3>The Random Beer App</h3></div>
   <Router>
   <App />
   </Router>
