@@ -2,9 +2,9 @@ import React, {Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {BrowserRouter as Router, Route, Switch, Redirect, Link,useHistory, useParams} from 'react-router-dom';
-const api = 'http://cors-anywhere.herokuapp.com/api.brewerydb.com/v2/beer/';
-const breweryApi = 'http://cors-anywhere.herokuapp.com/api.brewerydb.com/v2/brewery/';
-const randomBeer = 'http://cors-anywhere.herokuapp.com/api.brewerydb.com/v2/beer/random/';
+const api = 'https://cors-anywhere.herokuapp.com/api.brewerydb.com/v2/beer/';
+const breweryApi = 'https://cors-anywhere.herokuapp.com/api.brewerydb.com/v2/brewery/';
+const randomBeer = 'https://cors-anywhere.herokuapp.com/api.brewerydb.com/v2/beer/random/';
 
 const apiKey = "?withBreweries=Y&hasLabels=Y&key=a5c1b917e7ba62dcd79f434ed73bc72d";
 
